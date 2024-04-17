@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .modal {
+            display: none;
+        }
+        
+        body:has(.modal.open) {
+            overflow: hidden;
+        }
+        
+        .modal.open {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            position: fixed;
+            /* Stay in place */
+            z-index: 99;
+            /* Sit on top */
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Black w/ opacity */
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: auto;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 1px solid #0059dd;
+            z-index: 100;
+            background: linear-gradient( 45deg, transparent, transparent 7px, rgb(113, 121, 126) 7px, rgb(113, 121, 126) 7.5px, transparent 7.5px, transparent 10px), linear-gradient( -45deg, transparent, transparent 7px, rgb(113, 121, 126) 7px, rgb(113, 121, 126) 7.5px, transparent 7.5px, transparent 10px);
+            background-size: 10px 10px;
+            width: 100%;
+            max-width: 642px;
+        }
+        /* mostly code below from fiddle except i changed the blog-pager*/
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #121212;
+            padding: 50px 0;
+        }
+        
+        .container:not(.modal) {
+            max-width: 642px;
+            margin: 15px auto 30px;
+            padding: 15px;
+            /*box-shadow: 0 0 0 rgb(0 0 0 / 20%);*/
+            border: 1px solid #0059dd;
+            border-radius: 0;
+            background: linear-gradient( 45deg, transparent, transparent 7px, rgb(113, 121, 126) 7px, rgb(113, 121, 126) 7.5px, transparent 7.5px, transparent 10px), linear-gradient( -45deg, transparent, transparent 7px, rgb(113, 121, 126) 7px, rgb(113, 121, 126) 7.5px, transparent 7.5px, transparent 10px);
+            background-size: 10px 10px;
+        }
+        
+        .ratio-keeper {
+            height: 0;
+            padding-top: 56.25%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ratio-keeper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .blog-pager {
+            transform: translatey(100%);
+            pointer-events: none;
+            position: absolute;
+            inset: 0 0 0 0;
+            z-index: 2;
+            pointer-events: initial;
+            top: auto;
+            bottom: 8px;
+            margin: auto;
+            right: 0;
+            left: 0;
+            width: 37px;
+            height: 37px;
+            background: black;
+            border-radius: 50%;
+            border: 5px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-pager::before,
+        .blog-pager::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: red;
+            transform: rotate(45deg);
+        }
+        
+        .blog-pager::after {
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myModal" class="container wrap modal open">
+        <div class="modal-content">
+            <div class="blog-pager close">
+                <a title="Exit" aria-label="Close"></a>
+            </div>
+            <div class="container">
+                <div class="ratio-keeper wrap">
+                    <div class="video " data-id="1Q1aDAnBsU8"></div>
+                </div>
+            </div>
+            <div class="playa"></div>
+        </div>
+    </div>
+    <!-- end modal -->
+
+    <div class="container">
+        <div class="ratio-keeper">
+            <div class="video " data-id="1Q1aDAnBsU8"></div>
+        </div>
+        <div class="playb"></div>
+    </div>
+    <div class="container">
+        <div class="ratio-keeper">
+            <div class="video" data-id="1Q1aDAnBsU8"></div>
+        </div>
+        <div class="playc"></div>
+    </div>
+    <div class="container">
+        <div class="ratio-keeper">
+            <div class="video" data-id="1Q1aDAnBsU8"></div>
+        </div>
+        <div class="playd"></div>
+    </div>
+    <div class="container">
+        <div class="ratio-keeper">
+            <div class="video" data-id="1Q1aDAnBsU8"></div>
+        </div>
+        <div class="playe"></div>
+    </div>
+    <div class="container">
+        <div class="ratio-keeper">
+            <div class="video " data-id="1Q1aDAnBsU8"></div>
+        </div>
+        <div class="playf"></div>
+    </div>
+</body>
+
+<script>
+    // modal code
+    (function(d) {
+        const myModal = d.querySelector("#myModal");
+        const close = d.querySelector(".close");
+        close.addEventListener("click", clickMenu);
+        myModal.addEventListener("click", clickMenu);
+
+        function clickMenu() {
+            myModal.classList.remove("open");
+        }
+    })(document);
+    //end modal code
+
+    const manageCover = (function makeManageCover() {
+        function init() {}
+
+        return {
+            init
+        };
+    })();
+
+    const manageUI = (function makeManageUI() {
+        function exitClickHandler() {}
+
+        function addClickToExit(exitButtons) {
+            exitButtons.forEach(function addExitButtonHandler(exitButtons) {
+                exitButtons.addEventListener("click", exitClickHandler);
+            });
+        }
+
+        function addExitHandlers(callback) {
+            const resetVideo = document.querySelectorAll(".close");
+            resetVideo.forEach(function resetVideoHandler(video) {
+                video.addEventListener("click", callback);
+            });
+        }
+
+        function init() {
+            const exitButtons = document.querySelectorAll(".close");
+            addClickToExit(exitButtons);
+        }
+
+        return {
+            addExitHandlers,
+            init
+        };
+    })();
+
+    const videoPlayer = (function makeVideoPlayer() {
+        let player;
+
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/player_api";
+        const firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function shufflePlaylist(player) {
+            player.setShuffle(true);
+            player.playVideoAt(0);
+            //player.stopVideo();
+        }
+
+        function onPlayerReady(event) {
+            player = event.target;
+            player.setVolume(100);
+            //shufflePlaylist(player);
+        }
+
+        function onPlayerStateChange(event) {
+            const player = event.target;
+            return player;
+        }
+
+        function addPlayer(video, playerOptions) {
+            playerOptions.videoId = playerOptions.videoId || video.dataset.id;
+            playerOptions.events = playerOptions.events || {};
+            playerOptions.events.onReady = onPlayerReady;
+            playerOptions.events.onStateChange = onPlayerStateChange;
+
+            const player = new YT.Player(video, playerOptions);
+            return player;
+        }
+
+        return {
+            addPlayer
+        };
+    })();
+
+    const managePlayer = (function makeManagePlayer() {
+        const playerVars = {
+            autoplay: 0,
+            controls: 1,
+            disablekb: 1,
+            // enablejsapi: 1,
+            //loop: 1,
+            //playlist: 1,
+            fs: 0,
+            iv_load_policy: 3
+        };
+
+        const defaults = {
+            height: 360,
+            host: "https://www.youtube-nocookie.com",
+            playerVars,
+            width: 640
+        };
+
+        function show(el) {
+            el.classList.remove("hide");
+        }
+
+        function combinePlayerOptions(opts1 = {}, opts2 = {}) {
+            const combined = Object.assign({}, opts1, opts2);
+            Object.keys(opts1).forEach(function checkObjects(prop) {
+                if (typeof opts1[prop] === "object") {
+                    combined[prop] = Object.assign({}, opts1[prop], opts2[prop]);
+                }
+            });
+            return combined;
+        }
+
+        function createPlayer(videoWrapper, playerOptions = {}) {
+            const video = videoWrapper.querySelector(".video");
+            const options = combinePlayerOptions(defaults, playerOptions);
+            return videoPlayer.addPlayer(video, options);
+        }
+
+        function playerAdder(parent, playerOptions) {
+            const wrapper = parent;
+            // const wrapper = parent.document.querySelector(".wrap");
+            return function callback() {
+                initPlayer(wrapper, playerOptions);
+            };
+        }
+
+        function removePlayer(wrapper) {
+            wrapper.player.destroy();
+            delete wrapper.player;
+            console.log("removePlayer");
+        }
+
+        function removePlayerHandler(evt) {
+            const el = evt.target;
+            //const container = el.closest(".container");
+            const wrapper = document.querySelector(".wrap");
+            if (wrapper.player) {
+                return removePlayer(wrapper);
+            }
+        }
+
+        function initPlayer(wrapper, playerOptions) {
+            show(wrapper);
+
+            const player = createPlayer(wrapper, playerOptions);
+            wrapper.player = player;
+        }
+
+        return {
+            adder: playerAdder,
+            removePlayerHandler
+        };
+    })();
+
+    const players = (function coverUIPlayerFacade() {
+        function addPlayer(coverSelector, playerOptions) {
+            const parent = document.querySelector(coverSelector).parentElement;
+            const callback = managePlayer.adder(parent, playerOptions);
+            callback();
+        }
+
+        function init() {
+            manageCover.init({
+                container: ".container"
+            });
+
+            manageUI.init({});
+            manageUI.addExitHandlers(managePlayer.removePlayerHandler);
+        }
+
+        return {
+            add: addPlayer,
+            init
+        };
+    })();
+
+    players.init();
+
+    function onYouTubeIframeAPIReady() {
+        players.add(".playa", {
+            playerVars: {
+                loop: 1,
+                playlist: "s24NT7TFkUw"
+            }
+        });
+        players.add(".playb", {
+            videoId: "CHahce95B1g"
+        });
+        players.add(".playc", {});
+        players.add(".playd", {});
+        players.add(".playe", {
+            playerVars: {
+                playlist: "0dgNc5S8cLI,mnfmQe8Mv1g,-Xgi_way56U,CHahce95B1g"
+            }
+        });
+        players.add(".playf", {});
+    }
+</script>
+
+</html>

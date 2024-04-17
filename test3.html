@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* Style for the hidden video container */
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            text-align: center;
+        }
+        /* Style for the video iframe */
+        
+        #video-iframe {
+            margin-top: 20%;
+        }
+        /* Style for the close button */
+        
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>The Video Trailer Popup</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <div id="video-popup" class="popup">
+            <iframe id="video-iframe" width="560" height="315" src="YOUR_VIDEO_URL_HERE" frameborder="0" allowfullscreen></iframe>
+            <span id="close-popup" class="close-popup">&times;</span>
+        </div>
+        <button id="open-popup">Open Video</button>
+        <!-- <img src="https://images.app.goo.gl/NXoQh9ExjqVH11xU6" alt="Click to play video"> -->
+    </body>
+
+    </html>
+
+</body>
+<script>
+    // Open the video pop-up 
+    document.getElementById("open-popup").addEventListener("click", function() {
+        document.getElementById("video-popup").style.display = "block";
+        document.getElementById("video-iframe").src = "https://www.youtube.com/embed/3sNl-GR_-ww?si=CjxvPeJFmeok4vYT";
+    });
+
+    // Close the video pop-up 
+    document.getElementById("close-popup").addEventListener("click", function() {
+        document.getElementById("video-popup").style.display = "none";
+        document.getElementById("video-iframe").src = "";
+    });
+</script>
+
+</html>
